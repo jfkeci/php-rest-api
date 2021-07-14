@@ -19,8 +19,8 @@ $result = $post->read();
 $num = $result->rowCount();
 
 //Check if any posts
-if($num>0){
-    //Posts array
+if($num > 0){
+    //Posts arrays
     $post_arr = array();
     $posts_arr['data'] = array();
 
