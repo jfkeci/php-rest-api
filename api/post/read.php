@@ -48,7 +48,4 @@ if($num>0){
     echo json_encode(array('message' => 'no posts found'));
 }
 
-
-
-
 ?>
