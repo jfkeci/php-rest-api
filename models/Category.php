@@ -60,6 +60,52 @@ class Category{
         return false;
     }
 
+    public function delete(){
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id;';
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        $stmt->bindParam(':id', $this->id);
+
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf("Error: %s. \n, $stmt->error");
+        return false;
+    }
+
+    public function update(){
+                //Create query
+        $query = 'UPDATE ' . 
+                $this->table . '
+            SET
+                name = :name
+            WHERE
+                id = :id';
+
+        //Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        //clean data
+        $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->id = htmlspecialchars(strip_tags($this->id));
+
+        //Bind data
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':id', $this->id);
+
+        //execute query
+        if($stmt->execute()){
+            return true;
+        }
+
+        printf("Error: %s.\n,$stmt->error");
+        return false;
+    }
+
 }
 
 ?>
